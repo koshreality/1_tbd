@@ -13,5 +13,5 @@ CREATE CLUSTERED INDEX [IDX_descriptions_entity_id]
 GO
 
 ALTER TABLE [dbo].[head_descriptions]
-  ADD CONSTRAINT [FK_head_descriptions_attachment_id] FOREIGN KEY ([attachment_id]) REFERENCES [dbo].[head_attachments] ([attachment_id])
+  ADD CONSTRAINT [FK_head_descriptions_attachment_id] FOREIGN KEY ([attachment_id]) REFERENCES [dbo].[head_attachments] ([attachment_id]) ON DELETE CASCADE ON UPDATE CASCADE
 GO

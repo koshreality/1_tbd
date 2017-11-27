@@ -12,3 +12,16 @@ CREATE CLUSTERED INDEX [IDX_section_type_creation_datetime]
   ON [dbo].[section_type] ([name])
   ON [Head_Filegroup]
 GO
+
+SET QUOTED_IDENTIFIER, ANSI_NULLS ON
+GO
+CREATE TRIGGER [trigger1]
+ON [dbo].[section_type]
+AFTER INSERT, UPDATE
+AS
+IF EXISTS (SELECT * FROM INSERTED LEFT HASH JOIN head_descriptions hd ON sec_type_id = hd.entity_id WHERE has_description = 1 AND hd.entity_id IS NULL)
+  BEGIN
+    ROLLBACK TRAN
+      PRINT 'no description exists but has_description is 1'
+  END
+GO

@@ -17,6 +17,19 @@ CREATE UNIQUE CLUSTERED INDEX [UK_user]
   ON [Department_Filegroup]
 GO
 
+SET QUOTED_IDENTIFIER, ANSI_NULLS ON
+GO
+CREATE TRIGGER [trigger6]
+ON [dbo].[user]
+AFTER INSERT, UPDATE
+AS
+IF EXISTS (SELECT * FROM INSERTED LEFT HASH JOIN department_descriptions dd ON user_id = dd.entity_id WHERE has_description = 1 AND dd.entity_id IS NULL)
+  BEGIN
+    ROLLBACK TRAN
+      PRINT 'no description exists but has_description is 1'
+  END
+GO
+
 ALTER TABLE [dbo].[user]
   ADD CONSTRAINT [FK_user_nationality_region_id] FOREIGN KEY ([nationality_region_id]) REFERENCES [dbo].[region] ([region_id])
 GO

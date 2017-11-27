@@ -17,6 +17,19 @@ CREATE CLUSTERED INDEX [IDX_user_answer_submitted_at]
   ON [Head_Filegroup]
 GO
 
+SET QUOTED_IDENTIFIER, ANSI_NULLS ON
+GO
+CREATE TRIGGER [trigger8]
+ON [dbo].[user_answer]
+AFTER INSERT, UPDATE
+AS
+IF EXISTS (SELECT * FROM INSERTED LEFT HASH JOIN department_descriptions dd ON user_answer_id = dd.entity_id WHERE has_description = 1 AND dd.entity_id IS NULL)
+  BEGIN
+    ROLLBACK TRAN
+      PRINT 'no description exists but has_description is 1'
+  END
+GO
+
 ALTER TABLE [dbo].[user_answer]
   ADD CONSTRAINT [FK_user_answer_answer_variant_id] FOREIGN KEY ([answer_variant_id]) REFERENCES [dbo].[question_test_answer_variant] ([answer_variant_id])
 GO
