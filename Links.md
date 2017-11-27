@@ -4,6 +4,8 @@
 
 [Ссылка на модели](https://photos.app.goo.gl/tCO3j6gIlWRzLMBs1)
 
+[Накатывание новой версии, работа в команде](https://photos.app.goo.gl/7DwFSrWItUBAYWJm1)
+
 [Включение FILESTREAM](https://docs.microsoft.com/ru-ru/sql/relational-databases/blob/filestream-sql-server)
 
 [уровни изоляции транзакций на примере Postgres Pro](https://docs.google.com/document/d/1xpFAIZobHvSTMMpsXCEPf9vX_YsfqdXgRV07E8VvnqQ/edit#heading=h.gjdgxs)
