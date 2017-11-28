@@ -15,10 +15,10 @@ CREATE CLUSTERED INDEX [IDX_question_type_quest_type]
   ON [Head_Filegroup]
 GO
 
-ALTER TABLE [dbo].[question_type]
+ALTER TABLE [dbo].[question_type] WITH NOCHECK
   ADD CONSTRAINT [FK_question_type_grade_criteria] FOREIGN KEY ([grade_criteria]) REFERENCES [dbo].[grade_criteria] ([grade_crit_id])
 GO
 
-ALTER TABLE [dbo].[question_type]
+ALTER TABLE [dbo].[question_type] WITH NOCHECK
   ADD CONSTRAINT [FK_question_type_sec_type_id] FOREIGN KEY ([sec_type_id]) REFERENCES [dbo].[section_type] ([sec_type_id])
 GO

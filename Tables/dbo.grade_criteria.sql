@@ -25,4 +25,18 @@ IF EXISTS (SELECT * FROM INSERTED LEFT HASH JOIN head_descriptions hd ON grade_c
     ROLLBACK TRAN
       PRINT 'no description exists but has_description is 1'
   END
+DELETE FROM head_descriptions
+WHERE entity_id IN
+      (SELECT grade_crit_id FROM INSERTED WHERE has_description = 0)
+GO
+
+SET QUOTED_IDENTIFIER, ANSI_NULLS ON
+GO
+CREATE TRIGGER [trigger12]
+ON [dbo].[grade_criteria]
+AFTER DELETE
+AS
+DELETE FROM head_descriptions
+WHERE entity_id IN
+      (SELECT grade_crit_id FROM DELETED WHERE has_description = 1)
 GO

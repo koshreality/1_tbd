@@ -17,6 +17,6 @@ CREATE CLUSTERED INDEX [IDX_dep_attachments_creation_datetime]
   FILESTREAM_ON Department_Filestream_group
 GO
 
-ALTER TABLE [dbo].[dep_attachments]
+ALTER TABLE [dbo].[dep_attachments] WITH NOCHECK
   ADD CONSTRAINT [FK_dep_attachments_attach_type_id] FOREIGN KEY ([attach_type_id]) REFERENCES [dbo].[attachment_type] ([att_type_id])
 GO

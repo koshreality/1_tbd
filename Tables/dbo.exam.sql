@@ -18,14 +18,14 @@ CREATE CLUSTERED INDEX [IDX_exam_creation_datetime]
   ON [Department_Filegroup]
 GO
 
-ALTER TABLE [dbo].[exam]
+ALTER TABLE [dbo].[exam] WITH NOCHECK
   ADD CONSTRAINT [FK_exam_conducted_by] FOREIGN KEY ([conducted_by]) REFERENCES [dbo].[user] ([user_id])
 GO
 
-ALTER TABLE [dbo].[exam]
+ALTER TABLE [dbo].[exam] WITH NOCHECK
   ADD CONSTRAINT [FK_exam_dep_id] FOREIGN KEY ([dep_id]) REFERENCES [dbo].[department] ([dep_id]) ON DELETE CASCADE ON UPDATE CASCADE
 GO
 
-ALTER TABLE [dbo].[exam]
+ALTER TABLE [dbo].[exam] WITH NOCHECK
   ADD CONSTRAINT [FK_exam_test_id] FOREIGN KEY ([test_id]) REFERENCES [dbo].[test] ([test_id])
 GO

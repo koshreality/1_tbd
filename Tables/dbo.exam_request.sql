@@ -28,12 +28,26 @@ IF EXISTS (SELECT * FROM INSERTED LEFT HASH JOIN department_descriptions dd ON r
     ROLLBACK TRAN
       PRINT 'no description exists but has_description is 1'
   END
+DELETE FROM department_descriptions
+WHERE entity_id IN
+      (SELECT request_id FROM INSERTED WHERE has_description = 0)
 GO
 
-ALTER TABLE [dbo].[exam_request]
+SET QUOTED_IDENTIFIER, ANSI_NULLS ON
+GO
+CREATE TRIGGER [trigger15]
+ON [dbo].[exam_request]
+AFTER DELETE
+AS
+DELETE FROM department_descriptions
+WHERE entity_id IN
+      (SELECT request_id FROM DELETED WHERE has_description = 1)
+GO
+
+ALTER TABLE [dbo].[exam_request] WITH NOCHECK
   ADD CONSTRAINT [FK_exam_request_exam_id] FOREIGN KEY ([exam_id]) REFERENCES [dbo].[exam] ([exam_id]) ON DELETE CASCADE ON UPDATE CASCADE
 GO
 
-ALTER TABLE [dbo].[exam_request]
+ALTER TABLE [dbo].[exam_request] WITH NOCHECK
   ADD CONSTRAINT [FK_exam_request_user_id] FOREIGN KEY ([user_id]) REFERENCES [dbo].[user] ([user_id]) ON DELETE CASCADE ON UPDATE CASCADE
 GO

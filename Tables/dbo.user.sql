@@ -28,8 +28,22 @@ IF EXISTS (SELECT * FROM INSERTED LEFT HASH JOIN department_descriptions dd ON u
     ROLLBACK TRAN
       PRINT 'no description exists but has_description is 1'
   END
+DELETE FROM department_descriptions
+WHERE entity_id IN
+      (SELECT user_id FROM INSERTED WHERE has_description = 0)
 GO
 
-ALTER TABLE [dbo].[user]
+SET QUOTED_IDENTIFIER, ANSI_NULLS ON
+GO
+CREATE TRIGGER [trigger16]
+ON [dbo].[user]
+AFTER DELETE
+AS
+DELETE FROM department_descriptions
+WHERE entity_id IN
+      (SELECT user_id FROM DELETED WHERE has_description = 1)
+GO
+
+ALTER TABLE [dbo].[user] WITH NOCHECK
   ADD CONSTRAINT [FK_user_nationality_region_id] FOREIGN KEY ([nationality_region_id]) REFERENCES [dbo].[region] ([region_id])
 GO

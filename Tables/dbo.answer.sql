@@ -2,7 +2,7 @@
   [answer_id] [uniqueidentifier] NOT NULL DEFAULT (newid()),
   [something] [varchar](300) NULL,
   [has_description] [bit] NOT NULL DEFAULT (0),
-  [creation_datetime] [varchar](50) NOT NULL DEFAULT (getdate()),
+  [creation_datetime] [datetime] NOT NULL DEFAULT (getdate()),
   CONSTRAINT [PK_answer_variant_ans_var_id] PRIMARY KEY NONCLUSTERED ([answer_id])
 )
 ON [Head_Filegroup]
@@ -24,4 +24,18 @@ IF EXISTS (SELECT * FROM INSERTED LEFT HASH JOIN head_descriptions hd ON answer_
     ROLLBACK TRAN
       PRINT 'no description exists but has_description is 1'
   END
+DELETE FROM head_descriptions
+WHERE entity_id IN
+      (SELECT answer_id FROM INSERTED WHERE has_description = 0)
+GO
+
+SET QUOTED_IDENTIFIER, ANSI_NULLS ON
+GO
+CREATE TRIGGER [trigger11]
+ON [dbo].[answer]
+AFTER DELETE
+AS
+DELETE FROM head_descriptions
+WHERE entity_id IN
+      (SELECT answer_id FROM DELETED WHERE has_description = 1)
 GO

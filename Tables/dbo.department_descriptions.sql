@@ -12,6 +12,6 @@ CREATE CLUSTERED INDEX [IDX_descriptions_entity_id]
   ON [Head_Filegroup]
 GO
 
-ALTER TABLE [dbo].[department_descriptions]
+ALTER TABLE [dbo].[department_descriptions] WITH NOCHECK
   ADD CONSTRAINT [FK_department_descriptions_attachment_id] FOREIGN KEY ([attachment_id]) REFERENCES [dbo].[dep_attachments] ([attach_id]) ON DELETE CASCADE ON UPDATE CASCADE
 GO

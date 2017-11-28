@@ -13,6 +13,6 @@ CREATE CLUSTERED INDEX [IDX_test_creation_datetime]
   ON [Head_Filegroup]
 GO
 
-ALTER TABLE [dbo].[test]
+ALTER TABLE [dbo].[test] WITH NOCHECK
   ADD CONSTRAINT [FK_test_cert_type_id] FOREIGN KEY ([cert_type_id]) REFERENCES [dbo].[cert_type] ([cert_type_id])
 GO

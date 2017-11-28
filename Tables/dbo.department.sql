@@ -13,6 +13,6 @@ CREATE UNIQUE CLUSTERED INDEX [UK_department_name]
   ON [Department_Filegroup]
 GO
 
-ALTER TABLE [dbo].[department]
+ALTER TABLE [dbo].[department] WITH NOCHECK
   ADD CONSTRAINT [FK_department_region_id] FOREIGN KEY ([region_id]) REFERENCES [dbo].[region] ([region_id]) ON DELETE CASCADE ON UPDATE CASCADE
 GO
