@@ -13,6 +13,10 @@ CREATE CLUSTERED INDEX [IDX_user_role_from_date]
   ON [Department_Filegroup]
 GO
 
+ALTER TABLE [dbo].[user_role]
+  ADD CONSTRAINT [FK_user_role_department_id] FOREIGN KEY ([department_id]) REFERENCES [dbo].[department] ([dep_id])
+GO
+
 ALTER TABLE [dbo].[user_role] WITH NOCHECK
   ADD CONSTRAINT [FK_user_role_role_id] FOREIGN KEY ([role_id]) REFERENCES [dbo].[roles] ([role_id]) ON DELETE CASCADE ON UPDATE CASCADE
 GO

@@ -16,7 +16,7 @@ GO
 
 SET QUOTED_IDENTIFIER, ANSI_NULLS ON
 GO
-CREATE TRIGGER [trigger2]
+CREATE TRIGGER [grade_criteria_AFTER_INSERT_UPDATE_trigger]
 ON [dbo].[grade_criteria]
 AFTER INSERT, UPDATE
 AS
@@ -32,7 +32,7 @@ GO
 
 SET QUOTED_IDENTIFIER, ANSI_NULLS ON
 GO
-CREATE TRIGGER [trigger12]
+CREATE TRIGGER [grade_criteria_AFTER_DELETE_trigger]
 ON [dbo].[grade_criteria]
 AFTER DELETE
 AS
