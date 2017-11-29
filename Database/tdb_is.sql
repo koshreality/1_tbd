@@ -1,5 +1,18 @@
 ﻿USE master
 GO
+-- Enable Agent XPs
+sp_configure 'show advanced options', 1;  
+GO  
+RECONFIGURE;  
+GO  
+sp_configure 'Agent XPs', 1;  
+GO  
+RECONFIGURE  
+GO  
+-- Enable FILESTREAM (More info in link file)
+EXEC sp_configure filestream_access_level, 2  
+RECONFIGURE 
+-- May need to restart SQL Server
 
 EXEC msdb.dbo.sp_delete_database_backuphistory @database_name = N'tdb_is'
 GO
@@ -176,11 +189,9 @@ GO
 ALTER DATABASE SCOPED CONFIGURATION FOR SECONDARY SET QUERY_OPTIMIZER_HOTFIXES = PRIMARY;
 GO
 
-ALTER AUTHORIZATION ON DATABASE :: [tdb_is] TO [DESKTOP-94IST1V\Roman]
-GO
 
 IF DB_ID('tdb_is') IS NOT NULL
-  ALTER AUTHORIZATION ON DATABASE::tdb_is TO [DESKTOP-94IST1V\Roman]
+  ALTER AUTHORIZATION ON DATABASE::tdb_is TO [NT AUTHORITY\SYSTEM]
 GO
 
 IF DB_ID('tdb_is') IS NOT NULL
