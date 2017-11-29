@@ -19,6 +19,17 @@ GO
 
 SET QUOTED_IDENTIFIER, ANSI_NULLS ON
 GO
+CREATE TRIGGER [user_answer_AFTER_DELETE_trigger]
+ON [dbo].[user_answer]
+AFTER DELETE
+AS
+DELETE FROM department_descriptions
+WHERE entity_id IN
+      (SELECT user_answer_id FROM DELETED WHERE has_description = 1)
+GO
+
+SET QUOTED_IDENTIFIER, ANSI_NULLS ON
+GO
 CREATE TRIGGER [user_answer_AFTER_INSERT_UPDATE_trigger]
 ON [dbo].[user_answer]
 AFTER INSERT, UPDATE
@@ -43,17 +54,6 @@ IF NOT EXISTS (SELECT * FROM INSERTED
     ROLLBACK TRAN
       PRINT 'this answer does not apply to the exam test'
   END
-GO
-
-SET QUOTED_IDENTIFIER, ANSI_NULLS ON
-GO
-CREATE TRIGGER [user_answer_AFTER_DELETE_trigger]
-ON [dbo].[user_answer]
-AFTER DELETE
-AS
-DELETE FROM department_descriptions
-WHERE entity_id IN
-      (SELECT user_answer_id FROM DELETED WHERE has_description = 1)
 GO
 
 ALTER TABLE [dbo].[user_answer]

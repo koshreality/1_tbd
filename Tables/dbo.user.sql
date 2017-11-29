@@ -19,6 +19,17 @@ GO
 
 SET QUOTED_IDENTIFIER, ANSI_NULLS ON
 GO
+CREATE TRIGGER [user_AFTER_DELETE_trigger]
+ON [dbo].[user]
+AFTER DELETE
+AS
+DELETE FROM department_descriptions
+WHERE entity_id IN
+      (SELECT user_id FROM DELETED WHERE has_description = 1)
+GO
+
+SET QUOTED_IDENTIFIER, ANSI_NULLS ON
+GO
 CREATE TRIGGER [user_AFTER_INSERT_UPDATE_trigger]
 ON [dbo].[user]
 AFTER INSERT, UPDATE
@@ -31,17 +42,6 @@ IF EXISTS (SELECT * FROM INSERTED LEFT HASH JOIN department_descriptions dd ON u
 DELETE FROM department_descriptions
 WHERE entity_id IN
       (SELECT user_id FROM INSERTED WHERE has_description = 0)
-GO
-
-SET QUOTED_IDENTIFIER, ANSI_NULLS ON
-GO
-CREATE TRIGGER [user_AFTER_DELETE_trigger]
-ON [dbo].[user]
-AFTER DELETE
-AS
-DELETE FROM department_descriptions
-WHERE entity_id IN
-      (SELECT user_id FROM DELETED WHERE has_description = 1)
 GO
 
 ALTER TABLE [dbo].[user] WITH NOCHECK

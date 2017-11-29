@@ -1,0 +1,5 @@
+﻿INSERT dbo.attachment_type(att_type_id, name, creation_datetime) VALUES ('f9b89eb1-0864-4eff-9915-0c09b15c2344', N'Текст', '2017-11-28 17:57:16.517')
+INSERT dbo.attachment_type(att_type_id, name, creation_datetime) VALUES ('86022311-0bd4-440c-9468-55af47cb19af', N'Изображение', '2017-11-28 17:57:25.793')
+INSERT dbo.attachment_type(att_type_id, name, creation_datetime) VALUES ('ae9b4f38-a102-4861-9e09-58c3346147b7', N'Аудио', '2017-11-28 17:57:35.693')
+INSERT dbo.attachment_type(att_type_id, name, creation_datetime) VALUES ('fdb30066-44ae-4e0f-8b5a-642d0edea49d', N'Документ', '2017-11-28 17:57:49.997')
+INSERT dbo.attachment_type(att_type_id, name, creation_datetime) VALUES ('58b46b9d-4052-4b33-9e05-d894b19572b1', N'Видео', '2017-11-28 17:57:59.410')

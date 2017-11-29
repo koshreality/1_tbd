@@ -16,6 +16,17 @@ GO
 
 SET QUOTED_IDENTIFIER, ANSI_NULLS ON
 GO
+CREATE TRIGGER [grade_criteria_AFTER_DELETE_trigger]
+ON [dbo].[grade_criteria]
+AFTER DELETE
+AS
+DELETE FROM head_descriptions
+WHERE entity_id IN
+      (SELECT grade_crit_id FROM DELETED WHERE has_description = 1)
+GO
+
+SET QUOTED_IDENTIFIER, ANSI_NULLS ON
+GO
 CREATE TRIGGER [grade_criteria_AFTER_INSERT_UPDATE_trigger]
 ON [dbo].[grade_criteria]
 AFTER INSERT, UPDATE
@@ -28,15 +39,4 @@ IF EXISTS (SELECT * FROM INSERTED LEFT HASH JOIN head_descriptions hd ON grade_c
 DELETE FROM head_descriptions
 WHERE entity_id IN
       (SELECT grade_crit_id FROM INSERTED WHERE has_description = 0)
-GO
-
-SET QUOTED_IDENTIFIER, ANSI_NULLS ON
-GO
-CREATE TRIGGER [grade_criteria_AFTER_DELETE_trigger]
-ON [dbo].[grade_criteria]
-AFTER DELETE
-AS
-DELETE FROM head_descriptions
-WHERE entity_id IN
-      (SELECT grade_crit_id FROM DELETED WHERE has_description = 1)
 GO

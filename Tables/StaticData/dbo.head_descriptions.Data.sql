@@ -1,0 +1,2 @@
+﻿INSERT dbo.head_descriptions(name, entity_id, attachment_id, creation_datettime) VALUES (N'условия теста аудирование', '87dc5216-07a8-4820-ab43-8e61165c062e', 'fc35ca3b-863a-499e-a753-2655d967df37', '2017-11-28 18:32:09.240')
+INSERT dbo.head_descriptions(name, entity_id, attachment_id, creation_datettime) VALUES (N'условия теста лексика грамматика', '0ede7e47-7d13-48dd-ad72-952870bf1172', 'eeca1c9e-4710-42be-ba39-193e99a37527', '2017-11-28 18:05:17.467')

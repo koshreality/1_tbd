@@ -19,6 +19,17 @@ GO
 
 SET QUOTED_IDENTIFIER, ANSI_NULLS ON
 GO
+CREATE TRIGGER [exam_request_AFTER_DELETE_trigger]
+ON [dbo].[exam_request]
+AFTER DELETE
+AS
+DELETE FROM department_descriptions
+WHERE entity_id IN
+      (SELECT request_id FROM DELETED WHERE has_description = 1)
+GO
+
+SET QUOTED_IDENTIFIER, ANSI_NULLS ON
+GO
 CREATE TRIGGER [exam_request_AFTER_INSERT_UPDATE_trigger]
 ON [dbo].[exam_request]
 AFTER INSERT, UPDATE
@@ -31,17 +42,6 @@ IF EXISTS (SELECT * FROM INSERTED LEFT HASH JOIN department_descriptions dd ON r
 DELETE FROM department_descriptions
 WHERE entity_id IN
       (SELECT request_id FROM INSERTED WHERE has_description = 0)
-GO
-
-SET QUOTED_IDENTIFIER, ANSI_NULLS ON
-GO
-CREATE TRIGGER [exam_request_AFTER_DELETE_trigger]
-ON [dbo].[exam_request]
-AFTER DELETE
-AS
-DELETE FROM department_descriptions
-WHERE entity_id IN
-      (SELECT request_id FROM DELETED WHERE has_description = 1)
 GO
 
 ALTER TABLE [dbo].[exam_request] WITH NOCHECK

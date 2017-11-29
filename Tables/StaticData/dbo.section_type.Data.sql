@@ -1,0 +1,5 @@
+﻿INSERT dbo.section_type(sec_type_id, name, has_description, creation_datetime, something) VALUES ('b33c88fc-1ffc-4b54-890b-2e2f8c1d778b', N'Письмо', 0, '2017-11-28 17:53:58.293', NULL)
+INSERT dbo.section_type(sec_type_id, name, has_description, creation_datetime, something) VALUES ('04a36d7b-a191-4be3-986c-589a38f299c0', N'Устная речь', 0, '2017-11-28 17:53:39.827', NULL)
+INSERT dbo.section_type(sec_type_id, name, has_description, creation_datetime, something) VALUES ('c8708ed0-aee9-4d81-a152-7fb79a4ee6bf', N'Чтение', 0, '2017-11-28 17:53:52.687', NULL)
+INSERT dbo.section_type(sec_type_id, name, has_description, creation_datetime, something) VALUES ('87dc5216-07a8-4820-ab43-8e61165c062e', N'Аудирование', 1, '2017-11-28 18:28:20.903', NULL)
+INSERT dbo.section_type(sec_type_id, name, has_description, creation_datetime, something) VALUES ('0ede7e47-7d13-48dd-ad72-952870bf1172', N'Лексика-Грамматика', 1, '2017-11-28 17:52:49.170', NULL)

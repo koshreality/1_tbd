@@ -1,0 +1,2 @@
+﻿INSERT dbo.grade_criteria(grade_crit_id, has_description, creation_datetime, max_grade, something) VALUES ('32221316-385c-46d7-b08a-a3292d7a1f1b', 0, '2017-11-28 18:16:50.937', 1, N'Выбрать один правильный ответ')
+INSERT dbo.grade_criteria(grade_crit_id, has_description, creation_datetime, max_grade, something) VALUES ('1e7baa4f-856a-47cb-9e0e-b8dd32f2f81f', 0, '2017-11-28 18:24:18.000', 1, N'Выбрать все правильные ответы')
