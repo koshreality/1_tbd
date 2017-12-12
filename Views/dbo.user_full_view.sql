@@ -24,6 +24,6 @@ AS SELECT u.user_id
   FROM [user] u
   INNER HASH JOIN region r ON u.nationality_region_id = r.region_id
   INNER HASH JOIN user_role ur ON u.user_id = ur.user_id
-  INNER HASH JOIN roles r1 ON ur.role_id = r1.role_id
+  INNER HASH JOIN role r1 ON ur.role_id = r1.role_id
   INNER HASH JOIN department d ON ur.department_id = d.dep_id
 GO

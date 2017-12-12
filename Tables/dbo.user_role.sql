@@ -18,7 +18,7 @@ ALTER TABLE [dbo].[user_role]
 GO
 
 ALTER TABLE [dbo].[user_role] WITH NOCHECK
-  ADD CONSTRAINT [FK_user_role_role_id] FOREIGN KEY ([role_id]) REFERENCES [dbo].[roles] ([role_id]) ON DELETE CASCADE ON UPDATE CASCADE
+  ADD CONSTRAINT [FK_user_role_role_id] FOREIGN KEY ([role_id]) REFERENCES [dbo].[role] ([role_id]) ON DELETE CASCADE ON UPDATE CASCADE
 GO
 
 ALTER TABLE [dbo].[user_role] WITH NOCHECK

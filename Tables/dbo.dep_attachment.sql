@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[dep_attachments] (
+﻿CREATE TABLE [dbo].[dep_attachment] (
   [attach_id] [uniqueidentifier] NOT NULL DEFAULT (newid()) ROWGUIDCOL,
   [creation_datetime] [datetime] NOT NULL DEFAULT (getdate()),
   [data] [varbinary](max) FILESTREAM NULL,
@@ -12,11 +12,11 @@ FILESTREAM_ON Department_Filestream_group
 GO
 
 CREATE CLUSTERED INDEX [IDX_dep_attachments_creation_datetime]
-  ON [dbo].[dep_attachments] ([creation_datetime] DESC)
+  ON [dbo].[dep_attachment] ([creation_datetime] DESC)
   ON [Department_Filegroup]
   FILESTREAM_ON Department_Filestream_group
 GO
 
-ALTER TABLE [dbo].[dep_attachments] WITH NOCHECK
+ALTER TABLE [dbo].[dep_attachment] WITH NOCHECK
   ADD CONSTRAINT [FK_dep_attachments_attach_type_id] FOREIGN KEY ([attach_type_id]) REFERENCES [dbo].[attachment_type] ([att_type_id])
 GO

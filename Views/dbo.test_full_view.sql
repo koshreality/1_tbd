@@ -33,7 +33,7 @@ AS SELECT t.test_id
       ,a.has_description AS answer_has_description
       ,a.creation_datetime AS answer_creation_dt
   FROM test t
-  INNER HASH JOIN test_questions tq ON t.test_id = tq.test_id
+  INNER HASH JOIN test_question tq ON t.test_id = tq.test_id
   INNER HASH JOIN question q ON tq.question_id = q.quest_id
   INNER HASH JOIN question_type qt ON q.quest_type_id = qt.quest_type_id
   INNER HASH JOIN section_type st ON qt.sec_type_id = st.sec_type_id
