@@ -11,3 +11,6 @@
 [Пособие по настройке репликации](http://www.imaginecommunications.com/sites/default/files/documentation/sql_replication_setup_20160128.pdf)
 
 [уровни изоляции транзакций на примере Postgres Pro](https://docs.google.com/document/d/1xpFAIZobHvSTMMpsXCEPf9vX_YsfqdXgRV07E8VvnqQ/edit#heading=h.gjdgxs)
+
+[Настройки безопасности]
+(https://docs.google.com/spreadsheets/d/1Q2CeY8_CbDCK_r599gjlon7r-RkhvAMytEIygJONdM8/edit#gid=0)
